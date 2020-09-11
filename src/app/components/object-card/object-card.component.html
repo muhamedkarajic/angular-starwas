@@ -1,6 +1,6 @@
 <div class="object-card">
   <div class="img-container">
-    <img [src]="'assets/images/'+target+'/'+(index+1)+'.jpg'" alt="" />
+    <img [src]="'assets/images/'+target+'/'+(object.title || object.name)+'.jpg'" alt="" />
   </div>
   <div class="text-contaner">
     <h2>{{ object.title || object.name }}</h2>
