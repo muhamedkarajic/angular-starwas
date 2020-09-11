@@ -24,10 +24,12 @@
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/scss/bootstrap-grid.scss",
+              "./node_modules/@splidejs/splide/dist/css/splide.min.css",
+              "./node_modules/@splidejs/splide/dist/js/splide.min.js",
               "src/styles.scss"
             ],
             "scripts": []
@@ -89,7 +91,6 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [

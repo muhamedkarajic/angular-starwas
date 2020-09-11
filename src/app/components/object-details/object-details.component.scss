@@ -1,0 +1,22 @@
+@import "src/variables.scss";
+
+.object-details {
+  .row {
+    > div {
+      width: 100vw;
+    }
+  }
+  .title {
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .description {
+    p {
+      line-height: 23px;
+      font-size: 18px;
+      span {
+        font-weight: 700;
+      }
+    }
+  }
+}

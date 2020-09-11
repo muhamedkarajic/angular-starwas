@@ -1,0 +1,16 @@
+<div class="layout">
+  <div class="layout-content">
+    <div *ngIf="titlePrefix || titleDetails || titleSuffix"  class="title">
+      <div *ngIf="titlePrefix" class="title-prefix">
+        {{ titlePrefix | titlecase }}
+      </div>
+      <div *ngIf="titleDetails" class="title-details">
+        {{ titleDetails | titlecase }}
+      </div>
+      <div *ngIf="titleSuffix" class="title-suffix">
+        {{ titleSuffix | titlecase }}
+      </div>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

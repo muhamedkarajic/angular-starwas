@@ -1,0 +1,42 @@
+@import "src/variables.scss";
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .layout-content {
+    padding: 75px 0;
+    min-height: calc(100vh - #{$header-height} - #{$footer-height});
+    max-width: 100%;
+    width: 100%;
+    .title {
+      text-align: center;
+      padding-bottom: 100px;
+
+      font-weight: 300;
+      font-size: 25px;
+      .title-prefix {
+        padding: 20px 0;
+        display: inline-block;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          transform: translateX(-50%);
+          width: 65%;
+          height: 1px;
+          background-color: #10172c;
+        }
+      }
+      .title-details {
+        font-size: 75px;
+        font-weight: 700;
+        line-height: 90px;
+        color: $dark-blue;
+      }
+    }
+  }
+}

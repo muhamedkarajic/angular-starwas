@@ -1,0 +1,25 @@
+<div id="header-overlay">
+  <div id="header">
+    <div class="container">
+      <div id="header-content">
+        <div id="navbar">
+          <img src="assets/images/starwars.png" alt="" />
+          <ng-container *ngIf="routes$ | async as routes">
+
+            <a
+            *ngFor="let route of routes | keyvalue"
+            routerLink="/"
+            [queryParams]="{ target: route.key }"
+            [ngClass]="route.key == currentRoute ? 'active' : null"
+            >{{ route.key | titlecase }}</a
+            >
+          </ng-container>
+        </div>
+        <div id="search-input">
+          <input [formControl]='searchInput' name='search' placeholder="Search" type="text" />
+          <button id="icon"><img src="assets/images/search.svg" /></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

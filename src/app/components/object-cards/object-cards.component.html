@@ -1,0 +1,12 @@
+<layout>
+  <ng-container *ngIf="objects$ | async as objects; else loading">
+    <div class="row row-eq-height">
+      <span class="col-lg-4 col-md-6 p-4" *ngFor="let object of objects">
+        <object-card [object]="object"></object-card>
+      </span>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <loading></loading>
+  </ng-template>
+</layout>

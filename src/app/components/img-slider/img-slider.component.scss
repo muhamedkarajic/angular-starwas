@@ -1,0 +1,32 @@
+@import "src/variables.scss";
+
+.splide__track {
+  .splide__slide {
+    .img-preview {
+      height: 304px;
+      margin-left: -1px;
+      position: relative;
+      overflow: hidden;
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+      }
+    }
+  }
+}
+::ng-deep {
+  .splide__pagination {
+    bottom: -20px !important;
+
+    .splide__pagination__page {
+      background: #4040406e !important;
+    }
+    .splide__pagination__page.is-active {
+      transform: scale(1.4);
+      background: #b8828278 !important;
+    }
+  }
+}
