@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["./preview-urls.component.scss"],
 })
 export class PreviewUrlsComponent implements OnInit {
-  @Input() title: string[] = [];
+  @Input() title: string = null;
   @Input() urls: string[] = [];
   @Input() objects: any[] = [];
 
