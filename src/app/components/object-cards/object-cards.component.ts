@@ -14,7 +14,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ObjectCardsComponent {
   objects$: Observable<any[]>;
-
+  target: string = null;
   constructor(
     private httpClient: HttpClient,
     private activeRouter: ActivatedRoute,
@@ -22,6 +22,7 @@ export class ObjectCardsComponent {
   ) {
     activeRouter.queryParams.subscribe((data) => {
       this.validateTarget(data.target);
+      this.target = data.target;
       this.objects$ = httpClient
         .get<Search<any>>(environment.baseUrl + `${data.target}/?search=${data.keyword || ""}`)
         .pipe(map((data) => data.results));

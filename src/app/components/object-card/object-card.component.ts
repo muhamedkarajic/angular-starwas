@@ -8,4 +8,6 @@ import { Component, Input } from "@angular/core";
 export class ObjectCardComponent {
   constructor(public objectService: ObjectService) { }
   @Input() object: any;
+  @Input() index: number;
+  @Input() target: number;
 }

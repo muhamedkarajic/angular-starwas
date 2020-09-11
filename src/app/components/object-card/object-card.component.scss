@@ -4,13 +4,13 @@
   min-height: 100%;
   background-color: $soft-gray;
   .img-container {
-    min-height: 321px;
-
+    min-height: 450px;
     overflow: hidden;
     position: relative;
+    background-color: black;
     img {
       position: absolute;
-      min-height: 100%;
+      width: 100%;
       min-width: 100%;
       top: 50%;
       left: 50%;
