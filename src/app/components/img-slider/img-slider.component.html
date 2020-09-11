@@ -1,22 +1,23 @@
 <div class="splide">
   <div class="splide__track">
     <ul class="splide__list">
-      <li class="splide__slide">
+      <li class="splide__slide" *ngFor="let url of urls" >
         <div class="img-preview">
+          <img [src]="url" alt="" />
+        </div>
 
-          <img src="assets/images/starships/13.jpg" alt="" />
-        </div>
       </li>
-      <li class="splide__slide">
+      <li class="splide__slide" *ngFor="let url of urls" >
         <div class="img-preview">
+          <img src='assets/images/films/The Phantom Menace.jpg' alt="" />
+        </div>
 
-        <img src="assets/images/starships/12.jpg" alt="" />
-        </div>
       </li>
-      <li class="splide__slide">
+      <li class="splide__slide" *ngFor="let url of urls" >
         <div class="img-preview">
-          <img src="assets/images/starships/10.jpg" alt="" />
+          <img src='assets/images/films/Attack of the Clones.jpg' alt="" />
         </div>
+
       </li>
     </ul>
   </div>

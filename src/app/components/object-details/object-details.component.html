@@ -25,7 +25,9 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-12">
-        <img-slider></img-slider>
+        <img-slider
+          [urls]="['assets/images/'+ titlePrefix +'/' + (object.name || object.title) + '.jpg']"
+        ></img-slider>
       </div>
     </div>
 
