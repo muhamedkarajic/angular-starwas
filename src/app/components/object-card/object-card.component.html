@@ -7,7 +7,7 @@
     <div class="text-details">
       <p *ngFor="let obj of object | keyvalue | slice: 0:10">
         <ng-container
-          *ngIf="objectService.isValid(obj) && !objectService.isArray(obj)"
+          *ngIf="objectService.isValid(obj) && !objectService.isArray(obj.value)"
         >
           {{ objectService.printKey(obj.key) | titlecase }}:
           {{ obj.value | titlecase }}

@@ -9,25 +9,20 @@
       <div class="col-lg-6 col-md-12">
         <div class="description mr-lg-5 mb-3">
           <div class="title">Details:</div>
-          <p *ngFor="let obj of object | keyvalue">
-            <ng-container
-              *ngIf="objectService.isValid(obj) && !objectService.isArray(obj)"
-            >
-              <span>{{ objectService.printKey(obj.key) | titlecase }}:</span>
-              {{ obj.value | titlecase }}
-            </ng-container>
-          </p>
+            <p *ngFor="let obj of object | keyvalue">
+              <ng-container *ngIf="objectService.isValid(obj) && !objectService.isArray(obj.value)">
+                <span>{{ objectService.printKey(obj.key) | titlecase }}:</span>
+                {{ obj.value | titlecase }}
+              </ng-container>
+            </p>
 
-          <p *ngIf="object.opening_crawl">
-            <br />
-            {{ object.opening_crawl }}
-          </p>
+            <p *ngIf="object.opening_crawl" class="mt-4">
+              {{ object.opening_crawl }}
+            </p>
         </div>
       </div>
       <div class="col-lg-6 col-md-12">
-        <img-slider
-          [urls]="['assets/images/'+ titlePrefix +'/' + (object.name || object.title) + '.jpg']"
-        ></img-slider>
+        <img-slider [urls]="['assets/images/'+ titlePrefix +'/' + (object.name || object.title) + '.jpg']"></img-slider>
       </div>
     </div>
 
@@ -41,13 +36,16 @@
 
     <div class="mb-4" *ngFor="let obj of object | keyvalue">
       <preview-urls
-        *ngIf="objectService.isArray(obj) && obj.value.length"
+        *ngIf="objectService.isArray(obj.value) && obj.value.length"
         [urls]="obj.value"
         [title]="obj.key"
       ></preview-urls>
     </div>
   </div>
+
 </layout>
+
+
 <ng-template #loading>
   <loading></loading>
 </ng-template>

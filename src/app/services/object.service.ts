@@ -1,9 +1,22 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: "root",
 })
 export class ObjectService {
+
+  constructor(
+    private httpClient: HttpClient,
+    private activatedRoute: ActivatedRoute,
+
+  )
+  {
+
+  }
+
+
   ignoreKeys: string[] = [
     "opening_crawl",
     "url",
@@ -26,8 +39,8 @@ export class ObjectService {
     );
   }
 
-  isArray(item: any) {
-    return typeof item.value == "object" && item.value != null;
+  isArray(value: any) {
+    return typeof value == "object" && value != null;
   }
 
   printKey(key: any) {
