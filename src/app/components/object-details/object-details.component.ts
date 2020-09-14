@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
-import { Component, Input } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component } from "@angular/core";
 import { ObjectService } from "src/app/services/object.service";
 
 @Component({
@@ -15,13 +14,14 @@ export class ObjectDetailsComponent {
 
   constructor(
     private httpClient: HttpClient,
-    private route: ActivatedRoute,
     public objectService: ObjectService
   ) {
-    this.route.queryParams.subscribe((params) => {
-      this.titlePrefix = this.objectService.getTitlePrefix(params.url);
-      this.object$ = this.httpClient.get<any>(params.url.replace('http', 'https'));
-    });
+
+      this.objectService.target$.subscribe(target => this.titlePrefix = target);
+      this.objectService.url$.subscribe(url =>
+        this.object$ = this.httpClient.get<any>(url)
+      );
+
   }
 
 }

@@ -1,3 +1,4 @@
+import { ObjectService } from 'src/app/services/object.service';
 import { Router, Params } from "@angular/router";
 import { Search } from "src/app/models/search.model";
 import { environment } from "src/environments/environment";
@@ -15,25 +16,20 @@ import { ActivatedRoute } from "@angular/router";
 export class ObjectCardsComponent {
   objects$: Observable<any[]>;
   target: string = null;
+  keyword: string = null;
   constructor(
     private httpClient: HttpClient,
     private activeRouter: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private objectService: ObjectService
   ) {
-    activeRouter.queryParams.subscribe((data) => {
-      this.validateTarget(data.target);
-      this.target = data.target;
-      this.objects$ = httpClient
-        .get<Search<any>>(environment.baseUrl + `${data.target}/?search=${data.keyword || ""}`)
-        .pipe(map((data) => data.results));
-    });
+    this.objectService.target$.subscribe(target => this.target = target);
+    this.objectService.keyword$.subscribe(keyword => this.keyword = keyword);
+
+
+    this.objects$ = this.httpClient
+      .get<Search<any>>(environment.baseUrl + `${this.target}/?search=${this.keyword || ""}`)
+      .pipe(map((data) => data.results));
   }
 
-  validateTarget(target: string): void {
-    if (!target)
-      this.router.navigate(["/"], {
-        queryParams: { target: "films" },
-        queryParamsHandling: "merge",
-      });
-  }
 }

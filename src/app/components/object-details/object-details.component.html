@@ -1,6 +1,6 @@
 <layout
   *ngIf="object$ | async as object; else loading"
-  [titleDetails]="object.title"
+  [titleDetails]="object.title || object.name"
   [titleSuffix]="object.episode_id ? 'Episode ' + object.episode_id : null"
   [titlePrefix]="titlePrefix"
 >

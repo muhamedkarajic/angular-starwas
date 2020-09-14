@@ -10,7 +10,7 @@
             *ngFor="let route of routes | keyvalue"
             routerLink="/"
             [queryParams]="{ target: route.key }"
-            [ngClass]="route.key == currentRoute ? 'active' : null"
+            [ngClass]="route.key == target ? 'active' : null"
             >{{ route.key | titlecase }}</a
             >
           </ng-container>
