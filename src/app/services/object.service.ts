@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
-import { skip } from "rxjs/internal/operators/skip";
 
 @Injectable({
   providedIn: "root",
@@ -12,30 +10,29 @@ export class ObjectService {
   keyword$: BehaviorSubject<string> = new BehaviorSubject(null);
   url$: BehaviorSubject<string> = new BehaviorSubject(null);
 
-  constructor(
-    private httpClient: HttpClient,
-    private activeRouter: ActivatedRoute,
-    private router: Router
-  ) {
-    this.activeRouter.queryParams.pipe(skip(1)).subscribe((data) => {
-        this.url$.next(data.url ? data.url.replace("http", "https") : null);
-        this.target$.next(this.setTarget(data));
-        this.keyword$.next(data.keyword);
+  constructor(private activeRouter: ActivatedRoute, private router: Router) {
+    this.activeRouter.queryParams.subscribe((data) => {
+      this.url$.next(this.prepareUrl(data.url));
+      this.target$.next(this.prepareTarget(data));
+      this.keyword$.next(data.keyword);
     });
   }
 
-  setTarget(data) {
+  prepareUrl(url: string): string {
+    return url ? url.replace("http", "https") : null;
+  }
+
+  prepareTarget(data: any): string {
     if (data.target) return data.target;
     else if (data.url) return this.getTitlePrefix(data.url);
+    this.redirect();
     return null;
   }
 
-  validateTarget(target: string): void {
-    if (!target)
-      this.router.navigate(["/"], {
-        queryParams: { target: "films" },
-        queryParamsHandling: "merge",
-      });
+  redirect(): void {
+    this.router.navigate(["/"], {
+      queryParams: { target: "films" },
+    });
   }
 
   ignoreKeys: string[] = [
@@ -48,11 +45,11 @@ export class ObjectService {
     "homeworld",
   ];
 
-  getTitlePrefix(url) {
+  getTitlePrefix(url: string): string {
     return url.substring(21, url.slice(0, url.length - 1).lastIndexOf("/"));
   }
 
-  isValid(item: any) {
+  isValid(item: any): boolean {
     return (
       !this.ignoreKeys.includes(item.key) &&
       item.value != "unknown" &&
@@ -60,11 +57,11 @@ export class ObjectService {
     );
   }
 
-  isArray(value: any) {
+  isArray(value: any): boolean {
     return typeof value == "object" && value != null;
   }
 
-  printKey(key: any) {
+  printKey(key: any): string {
     return key.replace(/_+/g, " ");
   }
 }
