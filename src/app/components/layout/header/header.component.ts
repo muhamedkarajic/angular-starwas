@@ -13,6 +13,7 @@ import { FormControl } from "@angular/forms";
 })
 export class HeaderComponent {
   target: string;
+  menu: boolean = false;
   routes$: Observable<[string, string][]>;
   searchInput: FormControl = new FormControl();
 
@@ -24,18 +25,21 @@ export class HeaderComponent {
     this.objectService.target$.subscribe((target) => {
       this.target = target;
     });
-
-
     this.searchInput.valueChanges
       .pipe(debounceTime(1000))
       .subscribe((keyword) => this.changeKeywordQueryParam(keyword));
     this.routes$ = this.httpClient.get<[string, string][]>(environment.baseUrl);
   }
+
   changeKeywordQueryParam(keyword) {
-    const queryParams: Params = { keyword: keyword, target: this.target};
+    const queryParams: Params = { keyword: keyword, target: this.target };
 
     this.router.navigate(["/"], {
       queryParams: queryParams,
     });
+  }
+
+  toggleMenu() {
+    this.menu = !this.menu;
   }
 }

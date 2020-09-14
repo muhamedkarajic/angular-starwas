@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
+import { skip } from 'rxjs/internal/operators/skip';
 
 @Injectable({
   providedIn: "root",
@@ -11,7 +12,7 @@ export class ObjectService {
   url$: BehaviorSubject<string> = new BehaviorSubject(null);
 
   constructor(private activeRouter: ActivatedRoute, private router: Router) {
-    this.activeRouter.queryParams.subscribe((data) => {
+    this.activeRouter.queryParams.pipe(skip(1)).subscribe((data) => {
       this.url$.next(this.prepareUrl(data.url));
       this.target$.next(this.prepareTarget(data));
       this.keyword$.next(data.keyword);
