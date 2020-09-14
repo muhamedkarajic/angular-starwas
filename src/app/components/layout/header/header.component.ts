@@ -23,12 +23,8 @@ export class HeaderComponent {
   ) {
     this.objectService.target$.subscribe((target) => {
       this.target = target;
-      this.searchInput.setValue(null);
-
     });
-    this.objectService.keyword$.subscribe((keyword) =>
-      this.searchInput.setValue(keyword)
-    );
+
 
     this.searchInput.valueChanges
       .pipe(debounceTime(1000))
@@ -36,7 +32,7 @@ export class HeaderComponent {
     this.routes$ = this.httpClient.get<[string, string][]>(environment.baseUrl);
   }
   changeKeywordQueryParam(keyword) {
-    const queryParams: Params = { keyword: keyword};
+    const queryParams: Params = { keyword: keyword, target: this.target};
 
     this.router.navigate(["/"], {
       queryParams: queryParams,

@@ -10,6 +10,7 @@
             *ngFor="let route of routes | keyvalue"
             routerLink="/"
             [queryParams]="{ target: route.key }"
+            (click)='searchInput.setValue(null)'
             [ngClass]="route.key == target ? 'active' : null"
             >{{ route.key | titlecase }}</a
             >

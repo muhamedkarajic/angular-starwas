@@ -1,10 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Search } from "../models/search.model";
-import { Observable } from "rxjs/internal/Observable";
-import { environment } from "src/environments/environment";
-import { map } from "rxjs/internal/operators/map";
 import { BehaviorSubject } from "rxjs";
 import { skip } from "rxjs/internal/operators/skip";
 
@@ -22,17 +18,9 @@ export class ObjectService {
     private router: Router
   ) {
     this.activeRouter.queryParams.pipe(skip(1)).subscribe((data) => {
-      if(data.url)
-      {
         this.url$.next(data.url ? data.url.replace("http", "https") : null);
-
-      }
-      else
-      {
         this.target$.next(this.setTarget(data));
         this.keyword$.next(data.keyword);
-      }
-
     });
   }
 
