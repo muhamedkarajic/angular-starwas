@@ -1,4 +1,4 @@
-import { ObjectService } from 'src/app/services/object.service';
+import { ObjectService } from "src/app/services/object.service";
 import { Router, Params } from "@angular/router";
 import { Search } from "src/app/models/search.model";
 import { environment } from "src/environments/environment";
@@ -23,13 +23,21 @@ export class ObjectCardsComponent {
     private router: Router,
     private objectService: ObjectService
   ) {
-    this.objectService.target$.subscribe(target => this.target = target);
-    this.objectService.keyword$.subscribe(keyword => this.keyword = keyword);
-
-
-    this.objects$ = this.httpClient
-      .get<Search<any>>(environment.baseUrl + `${this.target}/?search=${this.keyword || ""}`)
-      .pipe(map((data) => data.results));
+    this.objectService.target$.subscribe((target) => {
+      this.target = target;
+      this.objects$ = this.fetchObject(target, this.keyword);
+    });
+    this.objectService.keyword$.subscribe((keyword) => {
+      this.keyword = keyword;
+      this.objects$ = this.fetchObject(this.target, keyword);
+    });
   }
 
+  fetchObject(target: string, keyword: string) {
+    return this.httpClient
+      .get<Search<any>>(
+        environment.baseUrl + `${target}/?search=${keyword || ""}`
+      )
+      .pipe(map((data) => data.results));
+  }
 }

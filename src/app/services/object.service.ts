@@ -16,16 +16,23 @@ export class ObjectService {
   keyword$: BehaviorSubject<string> = new BehaviorSubject(null);
   url$: BehaviorSubject<string> = new BehaviorSubject(null);
 
-
   constructor(
     private httpClient: HttpClient,
     private activeRouter: ActivatedRoute,
     private router: Router
   ) {
     this.activeRouter.queryParams.pipe(skip(1)).subscribe((data) => {
-      this.target$.next(this.setTarget(data));
-      data.keyword?this.keyword$.next(data.keyword):null;
-      this.url$.next(data.url ? data.url.replace('http', 'https') : null);
+      if(data.url)
+      {
+        this.url$.next(data.url ? data.url.replace("http", "https") : null);
+
+      }
+      else
+      {
+        this.target$.next(this.setTarget(data));
+        this.keyword$.next(data.keyword);
+      }
+
     });
   }
 
