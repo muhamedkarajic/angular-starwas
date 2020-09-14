@@ -36,7 +36,6 @@ export class HeaderComponent {
 
     this.router.navigate(["/"], {
       queryParams: queryParams,
-      queryParamsHandling: 'merge'
     });
   }
 }
