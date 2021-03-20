@@ -10,7 +10,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="https://raw.githubusercontent.com/muhamedkarajic/frontend-starwas/source-code/src/assets/images/starwars.png" alt="Logo" width="80" height="80">
+    <img src="https://raw.githubusercontent.com/muhamedkarajic/frontend-starwas/source-code/src/assets/images/starwars.png" alt="Logo" width="80" height="auto">
 
   <h3 align="center">Best-README-Template</h3>
 
