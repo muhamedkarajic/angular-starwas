@@ -2,8 +2,11 @@
 
   <h3 align="center">Frontend Starwars</h3>
 
+
   <p align="center">
-    [Angular 8.3.29](https://jquery.com) | [Bootstrap Grid](https://getbootstrap.com) | [Sass](https://sass-lang.com/)
+    <a href="https://muhamedkarajic.github.io/fontend-starwas">Angular 8.3.29</a>
+    <a href="https://muhamedkarajic.github.io/fontend-starwas">Bootstrap 4 Grid</a>
+    <a href="https://muhamedkarajic.github.io/fontend-starwas">Sass</a>
     <br/>
     <br/>
     <a href="https://muhamedkarajic.github.io/fontend-starwas">View Demo</a>
