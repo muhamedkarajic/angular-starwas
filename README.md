@@ -4,8 +4,8 @@
 
 
   <p align="center">
-    <a href="https://muhamedkarajic.github.io/fontend-starwas">Angular 8.3.29</a>
-    <a href="https://muhamedkarajic.github.io/fontend-starwas">Bootstrap 4 Grid</a>
+    <a href="https://muhamedkarajic.github.io/fontend-starwas">Angular 8.3.29</a> |
+    <a href="https://muhamedkarajic.github.io/fontend-starwas">Bootstrap 4 Grid</a> |
     <a href="https://muhamedkarajic.github.io/fontend-starwas">Sass</a>
     <br/>
     <br/>
