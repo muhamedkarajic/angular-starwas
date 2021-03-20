@@ -5,6 +5,7 @@
   <p align="center">
     Angular 8 | Sass | Bootstrap 4 Grid
     <br/>
+    <br/>
     <a href="https://muhamedkarajic.github.io/fontend-starwas">View Demo</a>
 </p>
 
