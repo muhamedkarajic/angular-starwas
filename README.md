@@ -1,6 +1,6 @@
 <p align="center">
 
-  <h3 align="center">Frontend Starwars</h3>
+  <h3 align="center">Star Wars</h3>
 
 
   <p align="center">
