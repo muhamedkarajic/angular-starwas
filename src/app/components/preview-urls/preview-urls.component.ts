@@ -6,31 +6,28 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["./preview-urls.component.scss"],
 })
 export class PreviewUrlsComponent implements OnInit {
-  @Input() title: string = null;
-  @Input() urls: string[] = [];
-  @Input() objects: any[] = [];
+  @Input() target: string[] = [];
+  @Input() links: any[] = [];
+  fetchedObjects: number = 0;
 
   previewAll: boolean = false;
 
   constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
-    if (this.urls) {
-      this.objects = [];
       this.fetchUrls(false);
-    }
   }
 
   fetchUrls(previewAll) {
-    let i;
-    for (
-      i = this.objects.length;
-      i < this.urls.length && (i < 3 || previewAll);
-      i++
+    for (;
+      this.fetchedObjects < this.links.length && (this.fetchedObjects < 3 || previewAll);
+      this.fetchedObjects++
     ) {
-      const url = this.urls[i];
-      this.httpClient.get(url.replace('http', 'https')).subscribe((object) => this.objects.push(object));
+      const link = this.links[this.fetchedObjects];
+      this.httpClient.get(link.url).subscribe((object) => link['object'] = object );
     }
-    this.previewAll = this.urls.length == i || previewAll;
+    this.previewAll = this.links.length == this.fetchedObjects || previewAll;
+    console.log(this.links);
+
   }
 }

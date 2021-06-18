@@ -6,14 +6,12 @@
     <h2>{{ object.title || object.name }}</h2>
     <div class="text-details">
       <p *ngFor="let obj of object | keyvalue | slice: 0:10">
-        <ng-container
-          *ngIf="objectService.isValid(obj) && !objectService.isArray(obj.value)"
-        >
+        <ng-container *ngIf="objectService.isValid(obj) && !objectService.isArray(obj.value)">
           {{ objectService.printKey(obj.key) | titlecase }}:
           {{ obj.value | titlecase }}
         </ng-container>
       </p>
     </div>
-      <a routerLink="/details" [queryParams]="{ url: object.url }">More infos....</a>
+    <a routerLink="{{object.id}}">More infos....</a>
   </div>
 </div>

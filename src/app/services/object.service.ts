@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, UrlTree } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
 import { skip } from 'rxjs/internal/operators/skip';
 
@@ -7,20 +7,14 @@ import { skip } from 'rxjs/internal/operators/skip';
   providedIn: "root",
 })
 export class ObjectService {
-  target$: BehaviorSubject<string> = new BehaviorSubject(null);
   keyword$: BehaviorSubject<string> = new BehaviorSubject(null);
   url$: BehaviorSubject<string> = new BehaviorSubject(null);
 
   constructor(private activeRouter: ActivatedRoute, private router: Router) {
     this.activeRouter.queryParams.pipe(skip(1)).subscribe((data) => {
-      this.url$.next(this.prepareUrl(data.url));
-      this.target$.next(this.prepareTarget(data));
+      this.url$.next(data.url);
       this.keyword$.next(data.keyword);
     });
-  }
-
-  prepareUrl(url: string): string {
-    return url ? url.replace("http", "https") : null;
   }
 
   prepareTarget(data: any): string {
@@ -47,7 +41,12 @@ export class ObjectService {
   ];
 
   getTitlePrefix(url: string): string {
-    return url.substring(21, url.slice(0, url.length - 1).lastIndexOf("/"));
+    return url.substring(22, url.slice(0, url.length - 1).lastIndexOf("/"));
+  }
+
+  getId(url: string): string {
+    let urlSplitted = url.split('/');
+    return urlSplitted[urlSplitted.length - 2];
   }
 
   isValid(item: any): boolean {
@@ -61,7 +60,7 @@ export class ObjectService {
   isArray(value: any): boolean {
     return typeof value == "object" && value != null;
   }
-
+  
   printKey(key: any): string {
     return key.replace(/_+/g, " ");
   }

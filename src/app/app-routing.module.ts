@@ -5,12 +5,17 @@ import { ObjectCardsComponent } from "./components/object-cards/object-cards.com
 
 const routes: Routes = [
   {
-    path: "",
+    path: ":target",
     component: ObjectCardsComponent,
   },
   {
-    path: "details",
+    path: ":target/:id",
     component: ObjectDetailsComponent,
+  },
+  {
+    path: "",
+    redirectTo: "/films",
+    pathMatch: "full"
   },
 ];
 
@@ -20,4 +25,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

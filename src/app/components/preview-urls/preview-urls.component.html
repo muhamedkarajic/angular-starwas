@@ -1,13 +1,11 @@
 <div class="preview-urls">
-  <div class="title">{{ title | titlecase }}:</div>
-  <a
-    class="preview-url"
-    *ngFor="let object of objects"
-    routerLink="/details"
-    [queryParams]="{ url: object.url }"
-  >
-    {{ object.name || object.title }}
-  </a>
+  <div class="title">{{ target | titlecase }}:</div>
+  
+  <ng-container *ngFor="let link of links">
+    <a *ngIf="link.object" class="preview-url" routerLink="{{'/'+target+'/'+link.id}}">
+      {{ link.object.name || link.object.title }}
+    </a>
+  </ng-container>
 
   <div *ngIf="!previewAll" class="preview-url" (click)="fetchUrls(true)">
     ...

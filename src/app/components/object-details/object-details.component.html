@@ -26,19 +26,18 @@
       </div>
     </div>
 
-    <div class="mb-4">
+    <!-- <div class="mb-4">
       <preview-urls
         *ngIf="object.homeworld"
-        [urls]="[object.homeworld]"
-        [title]="'Homeworld'"
+        [links]="[object.arrayDetails.homeworld]"
+        [target]="'homeworld'"
       ></preview-urls>
-    </div>
+    </div> -->
 
-    <div class="mb-4" *ngFor="let obj of object | keyvalue">
+    <div class="mb-4" *ngFor="let obj of object.arrayDetails | keyvalue">
       <preview-urls
-        *ngIf="objectService.isArray(obj.value) && obj.value.length"
-        [urls]="obj.value"
-        [title]="obj.key"
+        [links]="obj.value.links"
+        [target]="obj.value.target"
       ></preview-urls>
     </div>
   </div>

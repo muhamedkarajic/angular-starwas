@@ -2,7 +2,7 @@ import { ObjectService } from "src/app/services/object.service";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
-import { Params, Router } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Component } from "@angular/core";
 import { debounceTime } from "rxjs/operators";
 import { FormControl } from "@angular/forms";
@@ -12,7 +12,7 @@ import { FormControl } from "@angular/forms";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent {
-  target: string;
+  target: string = this.activeRouter.snapshot.params.target;
   menu: boolean = false;
   routes$: Observable<[string, string][]>;
   searchInput: FormControl = new FormControl();
@@ -20,11 +20,8 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private httpClient: HttpClient,
-    private objectService: ObjectService
+    private activeRouter: ActivatedRoute
   ) {
-    this.objectService.target$.subscribe((target) => {
-      this.target = target;
-    });
     this.searchInput.valueChanges
       .pipe(debounceTime(1000))
       .subscribe((keyword) => this.changeKeywordQueryParam(keyword));
