@@ -19,7 +19,7 @@ export class ObjectDetailsComponent {
   ) {
     this.route.queryParams.subscribe((params) => {
       this.titlePrefix = this.objectService.getTitlePrefix(params.url);
-      this.object$ = this.httpClient.get<any>(params.url.replace('http', 'https'));
+      this.object$ = this.httpClient.get<any>(params.url.replace('http://', 'https://'));
       this.object$.subscribe(s => console.log('object',s));
     });
   }

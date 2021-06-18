@@ -29,7 +29,7 @@ export class PreviewUrlsComponent implements OnInit {
       i++
     ) {
       const url = this.urls[i];
-      this.httpClient.get(url.replace('http', 'https')).subscribe((object) => this.objects.push(object));
+      this.httpClient.get(url.replace('http://', 'https://')).subscribe((object) => this.objects.push(object));
     }
     this.previewAll = this.urls.length == i || previewAll;
   }

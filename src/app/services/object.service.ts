@@ -15,7 +15,7 @@ export class ObjectService {
   ];
 
   getTitlePrefix(url) {
-    return url.substring(21, url.slice(0, url.length - 1).lastIndexOf("/"));
+    return url.substring(22, url.slice(0, url.length - 1).lastIndexOf("/"));
   }
 
   isValid(item: any) {
